@@ -1,0 +1,46 @@
+select jobtitle, round(avg(age), 0) as averageAge from employeedata
+group by 1
+order by 2 asc;
+
+select department, round(avg(annualsalary)) as salary from employeedata
+group by 1 order by salary desc;
+
+select distinct year(hiredate) as year, count(year(hiredate)) as totalHired from employeedata 
+group by 1
+order by 1 asc;
+
+select count(exitdate) from employeedata
+where exitdate is not null;
+
+SELECT
+  CASE
+    WHEN YEAR(CURRENT_DATE) - YEAR(hiredate) BETWEEN 1 AND 10 THEN '1-5 years'
+    WHEN YEAR(CURRENT_DATE) - YEAR(hiredate) BETWEEN 11 AND 20 THEN '11-20 years'
+    WHEN YEAR(CURRENT_DATE) - YEAR(hiredate) BETWEEN 21 AND 30 THEN '21-30 years'
+	WHEN YEAR(CURRENT_DATE) - YEAR(hiredate) BETWEEN 31 AND 40 THEN '31-40 years'
+  END AS yearsworked,
+  round(AVG(annualsalary),0) AS averagesalary
+FROM
+  employeedata
+GROUP BY
+  yearsworked;
+  
+select department, count(gender)as numberoffemales from employeedata
+where gender = 'female' 
+group by 1;
+
+select department, count(gender)as numberofmales from employeedata
+where gender = 'male' 
+group by 1;
+
+select ethnicity, count(ethnicity) from employeedata
+group by 1;
+
+select avg(age) from employeedata;
+
+select count(country) from employeedata
+where country = 'United States';
+
+select ethnicity, avg(annualsalary) from employeedata
+group by 1 
+order by 2 asc
